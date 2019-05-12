@@ -1,0 +1,14 @@
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\bin\Debug\netcoreapp2.2\Reservaties.API.deps.json
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\bin\Debug\netcoreapp2.2\Reservaties.API.runtimeconfig.json
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\bin\Debug\netcoreapp2.2\Reservaties.API.runtimeconfig.dev.json
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\bin\Debug\netcoreapp2.2\Reservaties.API.dll
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\obj\Debug\netcoreapp2.2\Reservaties.API.csprojAssemblyReference.cache
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\obj\Debug\netcoreapp2.2\Reservaties.API.csproj.CoreCompileInputs.cache
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\obj\Debug\netcoreapp2.2\Reservaties.API.RazorAssemblyInfo.cache
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\obj\Debug\netcoreapp2.2\Reservaties.API.RazorAssemblyInfo.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\obj\Debug\netcoreapp2.2\Reservaties.API.AssemblyInfoInputs.cache
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\obj\Debug\netcoreapp2.2\Reservaties.API.AssemblyInfo.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\obj\Debug\netcoreapp2.2\Reservaties.API.RazorTargetAssemblyInfo.cache
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\bin\Debug\netcoreapp2.2\Reservaties.API.pdb
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\obj\Debug\netcoreapp2.2\Reservaties.API.dll
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservaties.API\obj\Debug\netcoreapp2.2\Reservaties.API.pdb
