@@ -17,7 +17,18 @@ D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Re
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Reservatie.Web.TagHelpers.input.cache
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Reservatie.Web.TagHelpers.output.cache
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Reservatie.Web.RazorCoreGenerate.cache
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\ForgotPassword.g.cshtml.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Login.g.cshtml.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Logout.g.cshtml.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\Register.g.cshtml.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\Account\_ViewImports.g.cshtml.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.g.cshtml.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewImports.g.cshtml.cs
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewStart.g.cshtml.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Hall\Create.g.cshtml.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Hall\Delete.g.cshtml.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Hall\Edit.g.cshtml.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Hall\Index.g.cshtml.cs
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Movie\Create.g.cshtml.cs
@@ -25,6 +36,7 @@ D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Ra
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Movie\Edit.g.cshtml.cs
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Movie\Index.g.cshtml.cs
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Screening\Create.g.cshtml.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Screening\Edit.g.cshtml.cs
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Screening\Index.g.cshtml.cs
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Screening\Movies.g.cshtml.cs
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
@@ -40,3 +52,6 @@ D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Re
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Reservatie.Web.csproj.CopyComplete
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Reservatie.Web.dll
 D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Reservatie.Web.pdb
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Account\Index.g.cshtml.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Reservation\Index.g.cshtml.cs
+D:\VS\S4_BED\Project\Reservatie.WebApp\Reservatie.Web\obj\Debug\netcoreapp2.2\Razor\Views\Reservation\Create.g.cshtml.cs

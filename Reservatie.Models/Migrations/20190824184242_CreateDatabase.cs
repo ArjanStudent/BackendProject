@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Reservatie.Web.Data.Migrations
+namespace Reservatie.Models.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class CreateDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,11 +40,43 @@ namespace Reservatie.Web.Data.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Hall",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Total_Seats = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hall", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Movie",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Title = table.Column<string>(nullable: false),
+                    Director = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: false),
+                    Duration_Movie = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Movie", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,6 +185,109 @@ namespace Reservatie.Web.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Seat",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Row_Seat = table.Column<int>(nullable: false),
+                    Number_Seat = table.Column<int>(nullable: false),
+                    HallId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Seat", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Seat_Hall_HallId",
+                        column: x => x.HallId,
+                        principalTable: "Hall",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Screening",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Programmation = table.Column<DateTime>(nullable: false),
+                    Movie_Id = table.Column<int>(nullable: false),
+                    Hall_Id = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Screening", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Screening_Hall_Hall_Id",
+                        column: x => x.Hall_Id,
+                        principalTable: "Hall",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Screening_Movie_Movie_Id",
+                        column: x => x.Movie_Id,
+                        principalTable: "Movie",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reservation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Reservation_Status = table.Column<int>(nullable: false),
+                    Date_Reserved = table.Column<DateTime>(nullable: false),
+                    User_Id = table.Column<Guid>(nullable: false),
+                    ScreeningId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reservation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reservation_Screening_ScreeningId",
+                        column: x => x.ScreeningId,
+                        principalTable: "Screening",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Seat_reserved",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    SeatId = table.Column<int>(nullable: true),
+                    ScreeningId = table.Column<int>(nullable: true),
+                    ReservationId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Seat_reserved", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Seat_reserved_Reservation_ReservationId",
+                        column: x => x.ReservationId,
+                        principalTable: "Reservation",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Seat_reserved_Screening_ScreeningId",
+                        column: x => x.ScreeningId,
+                        principalTable: "Screening",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Seat_reserved_Seat_SeatId",
+                        column: x => x.SeatId,
+                        principalTable: "Seat",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +326,41 @@ namespace Reservatie.Web.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservation_ScreeningId",
+                table: "Reservation",
+                column: "ScreeningId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Screening_Hall_Id",
+                table: "Screening",
+                column: "Hall_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Screening_Movie_Id",
+                table: "Screening",
+                column: "Movie_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seat_HallId",
+                table: "Seat",
+                column: "HallId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seat_reserved_ReservationId",
+                table: "Seat_reserved",
+                column: "ReservationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seat_reserved_ScreeningId",
+                table: "Seat_reserved",
+                column: "ScreeningId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seat_reserved_SeatId",
+                table: "Seat_reserved",
+                column: "SeatId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +381,28 @@ namespace Reservatie.Web.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Seat_reserved");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Reservation");
+
+            migrationBuilder.DropTable(
+                name: "Seat");
+
+            migrationBuilder.DropTable(
+                name: "Screening");
+
+            migrationBuilder.DropTable(
+                name: "Hall");
+
+            migrationBuilder.DropTable(
+                name: "Movie");
         }
     }
 }

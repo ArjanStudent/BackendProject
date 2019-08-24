@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Reservatie.Core.Data;
 using Reservatie.Core.Models;
-using Reservatie.Models.Repositories;
+using Reservatie.Core.Repositories;
+using Reservatie.Web.ViewModels;
 
 namespace Reservatie.Web.Controllers
 {
@@ -37,17 +38,18 @@ namespace Reservatie.Web.Controllers
         }
 
         // GET: Cinema/Create
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.listMovies = _movieRepo.GetAllTitles().Result;
-            ViewBag.listHalls = _hallRepo.GetAllHalls().Result;
+            ViewBag.listHalls = _hallRepo.GetAllHallNamesAsync().Result;
+
             return View();
         }
 
         // POST: Cinema/Create
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind("Movie_Id","Hall_Id","Programmation")] Screening screening)
         {
@@ -64,14 +66,17 @@ namespace Reservatie.Web.Controllers
         }
 
         // GET: Cinema/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
-
-            return View();
+            var screening =  _screeningRepo.GetScreeningById(id).Result;
+            ScreeningMoviesVM vm = new ScreeningMoviesVM(_movieRepo,_hallRepo, screening);
+            return View(vm);
         }
 
         // POST: Cinema/Edit/5
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
@@ -88,7 +93,7 @@ namespace Reservatie.Web.Controllers
         }
 
         // GET: Cinema/Delete/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             return View();
@@ -96,7 +101,7 @@ namespace Reservatie.Web.Controllers
 
         // POST: Cinema/Delete/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {

@@ -2,11 +2,12 @@
 using System.Threading.Tasks;
 using Reservatie.Core.Models;
 
-namespace Reservatie.Models.Repositories
+namespace Reservatie.Core.Repositories
 {
     public interface IScreeningRepo
     {
         Task<IEnumerable<Screening>> GetAllScreenings();
         void AddScreening(Screening screening);
+        Task<Screening> GetScreeningById(int id);
     }
 }

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reservatie.Models.Repositories
+namespace Reservatie.Core.Repositories
 {
     public class ScreeningRepo : IScreeningRepo
     {
@@ -31,6 +31,7 @@ namespace Reservatie.Models.Repositories
                 .ToListAsync();
             return result;
         }
+
         public async void AddScreening(Screening screening)
         {
             try
@@ -41,6 +42,37 @@ namespace Reservatie.Models.Repositories
                 };
                 await _context.Screening.AddAsync(newScreening);
                 _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.InnerException);
+            }
+        }
+        public async Task<Screening> GetScreeningById(int id)
+        {
+            Screening selectedScreening = new Screening();
+            selectedScreening = await _context.Screening.Where(s => s.Id == id)
+                .FirstOrDefaultAsync<Screening>();
+            return selectedScreening;
+        }
+
+
+        public async void EditScreening(int id, Screening screening)
+        {
+            try
+            {
+                Screening editScreening = new Screening();
+                editScreening = GetScreeningById(id).Result;
+                editScreening.Hall = screening.Hall;
+                editScreening.Hall_Id = screening.Hall_Id;
+                editScreening.Movie = screening.Movie;
+                editScreening.Movie_Id = screening.Movie_Id;
+                editScreening.Reservations = screening.Reservations;
+                editScreening.Programmation = screening.Programmation;
+                _context.Screening.Update(editScreening);
+                await _context.SaveChangesAsync();
+
+
             }
             catch (Exception ex)
             {

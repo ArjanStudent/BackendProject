@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Reservatie.Core.Data;
 using Reservatie.Core.Models;
-using Reservatie.Models.Repositories;
+using Reservatie.Core.Repositories;
 
 namespace Reservatie.Web.Controllers
 {

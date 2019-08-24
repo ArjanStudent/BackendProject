@@ -1,0 +1,146 @@
+﻿ASP.NET Core 2.2 – Data Transfer Objects (DTOs) and AutoMapper
+It is not a recommeded practice to return entities from our Web API. When we speak of entities, we refer to those classes that serve to model a table in our database. One of the drawbacks of this is that sometimes we do not want to show all the data contained in these entities. It is normal to only want to show a small data set, and not everything. One way to solve this is by using data transfer objects.
+
+A data transfer object (in English: data transfer object, DTO) is an object used to transport data between processes. We will use these DTOs to represent the data we want the clients of our Web API to receive. Another name that the DTOs receive is View Model.
+
+We are going to create our first DTO. We have our Author entity with the following fields:
+
+1
+2
+3
+4
+5
+6
+7
+8
+public class Author {
+    public int Id { get; set; }
+    [Required]
+    public string Name { get; set; }
+    public string Identification {get; set;}
+    public DateTime Birthdate {get; set;}
+    public List<Book> Books {get; set;}
+}
+We see that we have a field called Identification. This is a sensitive information of the author which we do not want to send to all API clients. One way to ensure that we do not send such information is by creating an author’s DTO which only contains the fields we want our API clients to see. Let’s create a class called AuthorDTO in the Models folder:
+
+1
+2
+3
+4
+5
+6
+7
+public class AuthorDTO {
+   public int Id { get; set; }
+   [Required]
+   public string Name { get; set; }
+   public DateTime Birthdate {get; set;}
+   public List<BookDTO> Books {get; set;}
+}
+Where BookDTO is:
+
+1
+2
+3
+4
+5
+6
+public class BookDTO {
+    public int Id { get; set; }
+    [Required]
+    public string Title { get; set; }
+    public int AuthorId {get; set;}
+}
+With this, we make sure that the confidential information of the author is not distributed by accident. Now, we must go to our AuthorsController and change the type of return data from Author to AuthorDTO. Let’s start with the method that returns an individual Author:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+[HttpGet("{id}")]
+public ActionResult<AuthorDTO> Get(int id)
+{
+  var author = _context.Authors.Include(x => x.Books).FirstOrDefault(x => x.Id == id);
+  if (author == null)
+    {
+      return NotFound();
+    }
+ 
+  return author;
+}
+This causes us to have an error. The error is that we are currently trying to return an author when what we would like to return is an Author. One way to solve this is to create an AuthorDTO instance, fill in your fields, and return this. Although this is something we can do, in the long run it becomes tedious to perform these manual mappings between types. One solution to this problem is to use a library like AutoMapper, which is responsible for doing this property mapping for us.
+
+AutoMapper
+We are going to install AutoMapper in our project. In Visual Studio, in the Package Manager Console you can use the following command:
+
+Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
+
+In the dotnet CLI:
+
+dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
+
+Now we can configure AutoMapper, for that we are going to go to the ConfigureServices method of the Startup class and place the following:
+
+1
+services.AddAutoMapper();
+This is the basic configuration of AutoMapper. Now, we can go back to our Get action and place the following:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+private readonly IMapper _mapper;
+ 
+public AuthorsController(ApplicationDbContext context,
+        IMapper mapper)
+{
+    this._context = context;
+    this._mapper = mapper;
+}
+ 
+[HttpGet("{id}", Name = "GetAuthor")]
+public ActionResult<AuthorDTO> Get(int id)
+{
+    // …
+    var authorDTO = _mapper.Map<AuthorDTO>(author);
+    return authorDTO;
+}
+As you can see, with this simple line of code we have managed to map the properties of Author to AuthorDTO. This mapping also performs the mapping from Book to BookDTO. Notice that I also had to inject the IMapper service to our controller.
+
+AutoMapper also works with element collections. For example, if we have a collection of authors, we can map it to a collection of AuthorDTO without any problem:
+
+1
+2
+3
+4
+5
+6
+7
+[HttpGet]
+public ActionResult<IEnumerable<AuthorDTO>> Get()
+{  
+    var authors = _context.Authors.ToList();
+    var authorsDTO = _mapper.Map<List<AuthorDTO>>(authors);
+    return authorsDTO;
+}
+Summary
+To improve the level of evolvability of our Web API, it is important to avoid returning entities from our controllers, it is better to return Data Transfer Objects (DTOs). We can use AutoMapper to automate the conversion of data from one type to another.

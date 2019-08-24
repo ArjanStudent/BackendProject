@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Reservatie.Models.Repositories
+namespace Reservatie.Core.Repositories
 {
     public class MovieRepo : IMovieRepo
     {
@@ -34,13 +34,10 @@ namespace Reservatie.Models.Repositories
         public async Task<Movie> GetMovieById(int id)
         {
             Movie selectedMovie = new Movie();
-            selectedMovie = _context.Movie.Where(m => m.Id == id)
-                .SingleOrDefaultAsync()
-                .Result;
+            selectedMovie = await _context.Movie.Where(m => m.Id == id)
+                .FirstOrDefaultAsync<Movie>();
             return selectedMovie;
-
-
-                            
+      
         }
 
         public async void AddMovie(Movie movie)
@@ -89,7 +86,7 @@ namespace Reservatie.Models.Repositories
             {
                 Movie deleteMovie = new Movie();
                 deleteMovie = GetMovieById(id).Result;
-                deleteMovie = GetMovieById(id).Result;
+                //deleteMovie = GetMovieById(id).Result;
                 deleteMovie.Description = movie.Description;
                 deleteMovie.Director = movie.Director;
                 deleteMovie.Title = movie.Title;

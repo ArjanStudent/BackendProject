@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Reservatie.Core.Models;
 
-namespace Reservatie.Models.Repositories
+namespace Reservatie.Core.Repositories
 {
     public interface IMovieRepo
     {

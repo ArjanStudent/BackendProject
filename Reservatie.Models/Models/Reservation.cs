@@ -14,7 +14,7 @@ namespace Reservatie.Core.Models
         public int Reservation_Status { get; set; }
         public DateTime Date_Reserved { get; set; }
 
-
+        public Guid User_Id { get; set; }
         public Screening Screening { get; set; }
         public ICollection<Seat_Reserved> Seats_Reserved { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Reservatie.Core.Models;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Reservatie.Core.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -27,12 +28,14 @@ namespace Reservatie.Core.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+           // builder.Entity<ApplicationUser>().HasKey<string>(l => l.Id);
 
 
             builder.Entity<Screening>(entity =>
             {
                 entity.Property(e => e.Movie_Id).HasColumnName("Movie_Id");
                 entity.Property(e => e.Hall_Id).HasColumnName("Hall_Id");
+                
             });
 
         }

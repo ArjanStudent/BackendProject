@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Reservatie.API.Models;
-using Reservatie.Models.Repositories;
+using Reservatie.Core.Repositories;
 
 namespace Reservaties.API.Controllers
 {
@@ -24,6 +24,11 @@ namespace Reservaties.API.Controllers
         {
             var model = await _movieRepo.GetMoviesAsync();
             List<Movies_DTO> model_DTO = new List<Movies_DTO>();
+            foreach (var movie in model)
+            {
+                Movies_DTO movieDTO = new Movies_DTO();
+                model_DTO.Add(MovieMapper.ConvertTo_DTO(movie, movieDTO));
+            }
             return Ok(model_DTO);
         }
 

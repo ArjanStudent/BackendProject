@@ -217,23 +217,30 @@
     <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="Data\DataInitializer.cs" />
     <Compile Include="Data\IDataInitializer.cs" />
-    <Compile Include="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
-    <Compile Include="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs">
-      <DependentUpon>00000000000000_CreateIdentitySchema.cs</DependentUpon>
+    <Compile Include="Migrations\20190824184242_CreateDatabase.cs" />
+    <Compile Include="Migrations\20190824184242_CreateDatabase.designer.cs">
+      <DependentUpon>20190824184242_CreateDatabase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data\Migrations\ApplicationDbContextModelSnapshot.cs" />
+    <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\ExpandedUserDTO.cs" />
     <Compile Include="Models\Hall.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\RoleDTO.cs" />
     <Compile Include="Models\Screening.cs" />
     <Compile Include="Models\Seat.cs" />
     <Compile Include="Models\Seat_Reserved.cs" />
+    <Compile Include="Models\UserAndRolesDTO.cs" />
+    <Compile Include="Models\UserRoleDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\HallRepo.cs" />
     <Compile Include="Repositories\IHallRepo.cs" />
     <Compile Include="Repositories\IMovieRepo.cs" />
+    <Compile Include="Repositories\IReservationRepo.cs" />
     <Compile Include="Repositories\IScreeningRepo.cs" />
     <Compile Include="Repositories\MovieRepo.cs" />
+    <Compile Include="Repositories\ReservationRepo.cs" />
     <Compile Include="Repositories\ScreeningRepo.cs" />
   </ItemGroup>
   <ItemGroup>
