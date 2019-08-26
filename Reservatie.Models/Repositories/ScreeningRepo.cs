@@ -36,12 +36,15 @@ namespace Reservatie.Core.Repositories
         {
             try
             {
-                Screening newScreening = new Screening()
-                {
-                    
-                };
-                await _context.Screening.AddAsync(newScreening);
-                _context.SaveChanges();
+                Screening newScreening = new Screening();
+                newScreening.Hall = screening.Hall;
+                newScreening.Hall_Id = screening.Hall_Id;
+                    newScreening.Movie = screening.Movie;
+                    newScreening.Movie_Id = screening.Movie_Id;
+                    newScreening.Reservations = screening.Reservations;
+                    newScreening.Programmation = screening.Programmation;
+                    await _context.Screening.AddAsync(newScreening);
+                    _context.SaveChanges();
             }
             catch (Exception ex)
             {

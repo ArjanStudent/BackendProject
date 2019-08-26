@@ -22,7 +22,7 @@ namespace Reservatie.Core.Models
 
         [Column("Hall_Id")]
         [ForeignKey("Hall")]
-        public int? Hall_Id { get; set; }
+        public int Hall_Id { get; set; }
         public Hall Hall { get; set; }
 
 

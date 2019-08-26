@@ -41,10 +41,12 @@ namespace Reservatie.Web.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            ViewBag.listMovies = _movieRepo.GetAllTitles().Result;
-            ViewBag.listHalls = _hallRepo.GetAllHallNamesAsync().Result;
+            //ViewBag.listMovies = _movieRepo.GetAllTitles().Result;
+            //ViewBag.listHalls = _hallRepo.GetAllHallNamesAsync().Result;
 
-            return View();
+            var screening = new Screening();
+            ScreeningMoviesVM vm = new ScreeningMoviesVM(_movieRepo, _hallRepo, screening);
+            return View(vm);
         }
 
         // POST: Cinema/Create
@@ -56,6 +58,9 @@ namespace Reservatie.Web.Controllers
             try
             {
                 // TODO: Add insert logic here
+                screening.Hall = _hallRepo.GetHallById(screening.Hall_Id).Result;
+                screening.Movie = _movieRepo.GetMovieById(screening.Movie_Id).Result;
+
                 _screeningRepo.AddScreening(screening);
                 return RedirectToAction(nameof(Index));
             }
